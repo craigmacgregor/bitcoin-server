@@ -12,6 +12,14 @@
 var _ = require('lodash');
 var Wallet = require('./wallet.model');
 
+var bitcoin = require('bitcoin');
+var client = new bitcoin.Client({
+  host: 'localhost',
+  port: 8332,
+  user: 'bitcoinrpc',
+  pass: 'Ctda8mi3KF5FLymNmeA4m5Qo11Bz5TrUR47iGE4XqXq'
+});
+
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
   return function(err) {
@@ -61,9 +69,13 @@ function removeEntity(res) {
 
 // Gets a list of Wallets
 exports.index = function(req, res) {
-  Wallet.findAsync()
-    .then(responseWithResult(res))
-    .catch(handleError(res));
+  res.setHeader('Content-Type', 'application/json');
+  client.cmd('listreceivedbyaddress',0,true, function(err, data) {
+    if (err) {
+      res.status(500).send(err);
+    }
+    res.send(JSON.stringify(data));
+  });
 };
 
 // Gets a single Wallet from the DB
@@ -76,9 +88,13 @@ exports.show = function(req, res) {
 
 // Creates a new Wallet in the DB
 exports.create = function(req, res) {
-  Wallet.createAsync(req.body)
-    .then(responseWithResult(res, 201))
-    .catch(handleError(res));
+  res.setHeader('Content-Type', 'application/json');
+  client.cmd('getnewaddress',function(err, data) {
+  if (err) {
+    res.status(500).send(err);
+  }
+    res.send(JSON.stringify(data));
+  });
 };
 
 // Updates an existing Wallet in the DB

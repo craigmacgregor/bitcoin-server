@@ -21,6 +21,12 @@ angular.module('bitcoinServerApp')
                scope.remove(id);
            });
            
+           elm.on('click', 'button.add', function(event){
+              
+               scope.add();
+               
+           });
+           
        }       
    };
 });

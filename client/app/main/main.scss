@@ -1,10 +1,24 @@
-.default-container {
-    width: $max-width;
+h2 {
+    border-bottom: 2px solid #222;
+}
+.content-default {
+    max-width: $site-max;
     margin: 0 auto;
+    padding: 0;
+    @media(max-width: 1180px){
+        padding: 0 20px;
+        width: 100%;
+        margin: 0;
+        max-width: 100%;
+    }
 }
 
 #wallets-table {
     td {
         vertical-align: middle;
     }
+}
+
+.main-label {
+    margin-left: 10px;
 }
