@@ -22,3 +22,20 @@ h2 {
 .main-label {
     margin-left: 10px;
 }
+
+.modal-sm {
+    width: 320px;
+}
+
+.main-modal-qr {
+    canvas {
+        margin: 0 auto;
+        display: block;
+    }
+}
+
+.main-modal-address {
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
+}

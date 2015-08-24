@@ -2,6 +2,7 @@
 
 angular.module('bitcoinServerApp')
   .directive('mainDirective', function(){
+           
     return {
        link: function(scope, elm, attrs, ctrl) {
            
@@ -12,13 +13,18 @@ angular.module('bitcoinServerApp')
                scope.submit();
            });
            
-           elm.on('click', 'button.remove', function(event){
-               
-               var id = angular.element(event.currentTarget).parents('tr')[0].attributes["data-id"].value;
-               
+           elm.on('click', 'button.qrcode', function(event){
+                              
                event.preventDefault();
                
-               scope.remove(id);
+               var address = angular.element(event.currentTarget).parents('tr')[0].attributes["data-address"].value;
+               scope.$apply(function(){
+                
+                    scope.qrcodeAddress = address;
+                    scope.openModal();
+                   
+               });                      
+               
            });
            
            elm.on('click', 'button.add', function(event){
