@@ -3,40 +3,40 @@
 var app = require('../../app');
 var request = require('supertest');
 
-var newThing;
+var newBoomark;
 
-describe('Thing API:', function() {
+describe('Boomark API:', function() {
 
-  describe('GET /api/things', function() {
-    var things;
+  describe('GET /api/bookmarks', function() {
+    var bookmarks;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/things')
+        .get('/api/bookmarks')
         .expect(200)
         .expect('Content-Type', /json/)
         .end(function(err, res) {
           if (err) {
             return done(err);
           }
-          things = res.body;
+          bookmarks = res.body;
           done();
         });
     });
 
     it('should respond with JSON array', function() {
-      things.should.be.instanceOf(Array);
+      bookmarks.should.be.instanceOf(Array);
     });
 
   });
 
-  describe('POST /api/things', function() {
+  describe('POST /api/bookmarks', function() {
     beforeEach(function(done) {
       request(app)
-        .post('/api/things')
+        .post('/api/bookmarks')
         .send({
-          name: 'New Thing',
-          info: 'This is the brand new thing!!!'
+          name: 'New Boomark',
+          info: 'This is the brand new bookmark!!!'
         })
         .expect(201)
         .expect('Content-Type', /json/)
@@ -44,55 +44,55 @@ describe('Thing API:', function() {
           if (err) {
             return done(err);
           }
-          newThing = res.body;
+          newBoomark = res.body;
           done();
         });
     });
 
-    it('should respond with the newly created thing', function() {
-      newThing.name.should.equal('New Thing');
-      newThing.info.should.equal('This is the brand new thing!!!');
+    it('should respond with the newly created bookmark', function() {
+      newBoomark.name.should.equal('New Boomark');
+      newBoomark.info.should.equal('This is the brand new bookmark!!!');
     });
 
   });
 
-  describe('GET /api/things/:id', function() {
-    var thing;
+  describe('GET /api/bookmarks/:id', function() {
+    var bookmark;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/things/' + newThing._id)
+        .get('/api/bookmarks/' + newBoomark._id)
         .expect(200)
         .expect('Content-Type', /json/)
         .end(function(err, res) {
           if (err) {
             return done(err);
           }
-          thing = res.body;
+          bookmark = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      thing = {};
+      bookmark = {};
     });
 
-    it('should respond with the requested thing', function() {
-      thing.name.should.equal('New Thing');
-      thing.info.should.equal('This is the brand new thing!!!');
+    it('should respond with the requested bookmark', function() {
+      bookmark.name.should.equal('New Boomark');
+      bookmark.info.should.equal('This is the brand new bookmark!!!');
     });
 
   });
 
-  describe('PUT /api/things/:id', function() {
-    var updatedThing
+  describe('PUT /api/bookmarks/:id', function() {
+    var updatedBoomark
 
     beforeEach(function(done) {
       request(app)
-        .put('/api/things/' + newThing._id)
+        .put('/api/bookmarks/' + newBoomark._id)
         .send({
-          name: 'Updated Thing',
-          info: 'This is the updated thing!!!'
+          name: 'Updated Boomark',
+          info: 'This is the updated bookmark!!!'
         })
         .expect(200)
         .expect('Content-Type', /json/)
@@ -100,27 +100,27 @@ describe('Thing API:', function() {
           if (err) {
             return done(err);
           }
-          updatedThing = res.body;
+          updatedBoomark = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      updatedThing = {};
+      updatedBoomark = {};
     });
 
-    it('should respond with the updated thing', function() {
-      updatedThing.name.should.equal('Updated Thing');
-      updatedThing.info.should.equal('This is the updated thing!!!');
+    it('should respond with the updated bookmark', function() {
+      updatedBoomark.name.should.equal('Updated Boomark');
+      updatedBoomark.info.should.equal('This is the updated bookmark!!!');
     });
 
   });
 
-  describe('DELETE /api/things/:id', function() {
+  describe('DELETE /api/bookmarks/:id', function() {
 
     it('should respond with 204 on successful removal', function(done) {
       request(app)
-        .delete('/api/things/' + newThing._id)
+        .delete('/api/bookmarks/' + newBoomark._id)
         .expect(204)
         .end(function(err, res) {
           if (err) {
@@ -130,9 +130,9 @@ describe('Thing API:', function() {
         });
     });
 
-    it('should respond with 404 when thing does not exist', function(done) {
+    it('should respond with 404 when bookmark does not exist', function(done) {
       request(app)
-        .delete('/api/things/' + newThing._id)
+        .delete('/api/bookmarks/' + newBoomark._id)
         .expect(404)
         .end(function(err, res) {
           if (err) {

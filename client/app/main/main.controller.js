@@ -25,17 +25,39 @@ angular.module('bitcoinServerApp')
         
     };
     
-    $scope.remove = function(id){
-        console.log('remove');
-        var request = $http({
-            method: "delete",
-            url: "/api/wallets/"+id
-        });
+    $scope.send = function(){
         
-        request.success(function(data){
-            console.log(data);
+        $scope.invalidAddress = false;
+        $scope.invalidAmount = false;
+        $scope.successfulTransaction = false;
+                
+        var req = {
+            method: "post",
+            url: "/api/wallets/send",
+            data: {
+                address: $scope.send.address,
+                amount: $scope.send.amount
+            }
+        };
+        
+        $http(req)
+          .then(function(response){
+            console.log(response);
             $scope.getWalletList();
-        });  
+            $scope.getBalance();
+            $scope.successfulTransaction = true;
+        },function(err){
+            console.log(err);
+            
+            if(err.data.code === -6){
+                $scope.invalidAmount = true;
+            }
+            
+            if(err.data.isvalid === false){
+                $scope.invalidAddress = true;
+            }
+            
+        });
         
     };
     
@@ -76,10 +98,26 @@ angular.module('bitcoinServerApp')
         });
     };
     
+    $scope.getBalance = function(){
+        console.log('getBalance');
+        var req = {
+            method: "get",
+            url: "/api/wallets/balance"
+        };
+        
+        $http(req)
+          .then(function(response){
+            console.log(response);
+            $scope.balance = response.data;
+        },function(err){
+            console.log(err);
+        });
+    };
+    
     $scope.init = function(){
        console.log('init');
        $scope.getWalletList();
-        
+       $scope.getBalance();
     }();
     
   }).controller('ModalInstanceCtrl', function($scope, items) {

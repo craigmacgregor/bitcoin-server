@@ -2,7 +2,7 @@
 
 <div class="content-default" main-directive>
     
-    <h2>Bitcoin Wallets</h2>
+    <h2>Bitcoin Wallets <span id="main-balance"><span class="fa fa-bitcoin"></span> {{balance}}</span></span></h2>
             
     <div class="row">
         <div class="col-md-12">
@@ -33,6 +33,28 @@
         </div>
     </div>
     
+    <h2>Send Bitcoins</h2>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="main-input input-group">
+                <span class="input-group-addon"><span class="fa fa-user"></span></span>
+                <input type="text" class="form-control" placeholder="Bicoin Address" ng-model="send.address">
+            </div>
+            <div ng-show="invalidAddress" class="alert alert-danger main-error">Invalid Address</div>
+            <div class="main-input input-group">
+                <span class="input-group-addon"><span class="fa fa-bitcoin"></span></span>
+                <input type="text" class="form-control" placeholder="Amount" ng-model="send.amount">
+            </div>
+            <div ng-show="invalidAmount" class="alert alert-danger main-error">Invalid Amount</div>
+            <button class=" main-input btn btn-default send">
+                <span class="fa fa-arrow-right"></span><span class="main-label">Send</span>
+            </button>
+            
+            <div ng-show="successfulTransaction" class="alert alert-success main-error">Successful Transaction!</div>
+            
+        </div>
+    </div>
     
 </div>
 

@@ -29,6 +29,29 @@ describe('Wallet API:', function() {
     });
 
   });
+  
+  describe('GET /api/wallets/balance', function() {
+    var wallets;
+
+    beforeEach(function(done) {
+      request(app)
+        .get('/api/wallets/balance')
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end(function(err, res) {
+          if (err) {
+            return done(err);
+          }
+          wallets = res.body;
+          done();
+        });
+    });
+
+    it('should respond with JSON array', function() {
+      wallets.should.be.instanceOf(Array);
+    });
+
+  });
 
   describe('POST /api/wallets', function() {
     beforeEach(function(done) {
@@ -54,35 +77,7 @@ describe('Wallet API:', function() {
       newWallet.info.should.equal('This is the brand new wallet!!!');
     });
 
-  });
-
-  describe('GET /api/wallets/:id', function() {
-    var wallet;
-
-    beforeEach(function(done) {
-      request(app)
-        .get('/api/wallets/' + newWallet._id)
-        .expect(200)
-        .expect('Content-Type', /json/)
-        .end(function(err, res) {
-          if (err) {
-            return done(err);
-          }
-          wallet = res.body;
-          done();
-        });
-    });
-
-    afterEach(function() {
-      wallet = {};
-    });
-
-    it('should respond with the requested wallet', function() {
-      wallet.name.should.equal('New Wallet');
-      wallet.info.should.equal('This is the brand new wallet!!!');
-    });
-
-  });
+  }); 
 
   describe('PUT /api/wallets/:id', function() {
     var updatedWallet

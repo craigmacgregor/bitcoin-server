@@ -6,11 +6,11 @@ angular.module('bitcoinServerApp')
     return {
        link: function(scope, elm, attrs, ctrl) {
            
-           elm.on('click', 'button.submit', function(event){
+           elm.on('click', 'button.send', function(event){
                
                event.preventDefault();
                
-               scope.submit();
+               scope.send();
            });
            
            elm.on('click', 'button.qrcode', function(event){
