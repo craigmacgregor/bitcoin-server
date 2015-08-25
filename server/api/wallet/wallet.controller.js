@@ -68,12 +68,15 @@ function removeEntity(res) {
 // Gets a list of Wallets
 exports.index = function(req, res) {
   res.setHeader('Content-Type', 'application/json');
-  client.cmd('listreceivedbyaddress',0,true, function(err, data) {
+  
+  client.cmd('listreceivedbyaddress', 0, true, function(err, data){
     if (err) {
       res.status(500).send(err);
     }
-    res.send(JSON.stringify(data));
-  });
+    res.send(JSON.stringify(data));   
+      
+  });//listreceivedbyaddress
+  
 };
 
 // Gets the total balance of all wallets
