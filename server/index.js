@@ -14,10 +14,11 @@ var client = new bitcoin.Client({
   pass: 'Ctda8mi3KF5FLymNmeA4m5Qo11Bz5TrUR47iGE4XqXq'
 });
  
-client.getDifficulty(function(err, difficulty) {
+client.cmd('getwalletinfo',function(err, data) {
   if (err) {
     return console.error(err);
   }
- 
-  console.log('Difficulty: ' + difficulty);
+  console.log("***********************************************");
+  console.log(data);
+  console.log("***********************************************");
 });
