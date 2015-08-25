@@ -76,9 +76,26 @@ angular.module('bitcoinServerApp')
         });
     };
     
+    $scope.getBalance = function(){
+        console.log('getBalance');
+        var req = {
+            method: "get",
+            url: "/api/wallets/balance"
+        };
+        
+        $http(req)
+          .then(function(response){
+            console.log(response);
+            $scope.balance = response.data;
+        },function(err){
+            console.log(err);
+        });
+    };
+    
     $scope.init = function(){
        console.log('init');
        $scope.getWalletList();
+       $scope.getBalance();
         
     }();
     
