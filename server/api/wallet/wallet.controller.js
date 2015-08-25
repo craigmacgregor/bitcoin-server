@@ -2,9 +2,6 @@
  * Using Rails-like standard naming convention for endpoints.
  * GET     /api/wallets              ->  index
  * POST    /api/wallets              ->  create
- * GET     /api/wallets/:id          ->  show
- * PUT     /api/wallets/:id          ->  update
- * DELETE  /api/wallets/:id          ->  destroy
  */
 
 'use strict';
