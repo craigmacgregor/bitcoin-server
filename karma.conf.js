@@ -20,6 +20,10 @@ module.exports = function(config) {
       'client/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'client/bower_components/lodash/dist/lodash.compat.js',
       'client/bower_components/angular-ui-router/release/angular-ui-router.js',
+      'client/bower_components/qrcode/lib/qrcode.js',
+      'client/bower_components/angular-qr/src/angular-qr.js',
+      'client/bower_components/qrcode-generator/js/qrcode.js',
+      'client/bower_components/angular-qrcode/angular-qrcode.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'client/app/app.js',

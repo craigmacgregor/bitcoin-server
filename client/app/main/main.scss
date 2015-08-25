@@ -1,27 +1,54 @@
-.thing-form {
-  margin: 20px 0;
+h2 {
+    border-bottom: 2px solid #222;
+}
+.content-default {
+    max-width: $site-max;
+    margin: 0 auto;
+    padding: 0;
+    @media(max-width: 1180px){
+        padding: 0 20px;
+        width: 100%;
+        margin: 0;
+        max-width: 100%;
+    }
 }
 
-#banner {
-  border-bottom: none;
-  margin-top: -20px;
+#wallets-table {
+    td {
+        vertical-align: middle;
+    }
 }
 
-#banner h1 {
-  font-size: 60px;
-  line-height: 1;
-  letter-spacing: -1px;
+.main-label {
+    margin-left: 10px;
 }
 
-.hero-unit {
-  position: relative;
-  padding: 30px 15px;
-  color: #F5F5F5;
-  text-align: center;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  background: #4393B9;
+.modal-sm {
+    width: 350px;
 }
 
-.navbar-text {
-  margin-left: 15px;
+.main-modal-qr {
+    canvas {
+        margin: 0 auto;
+        display: block;
+    }
+}
+
+.main-modal-address {
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.main-input {
+    margin-top: 10px;
+}
+
+#main-balance {
+    float: right;
+}
+
+.main-error {
+    margin: 10px 0;
+    padding: 10px;
 }

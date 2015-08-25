@@ -1,22 +1,58 @@
 <navbar></navbar>
 
-<header class="hero-unit" id="banner">
-  <div class="container">
-    <h1>'Allo, 'Allo!</h1>
-    <p class="lead">Kick-start your next web app with Angular Fullstack</p>
-    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
-  </div>
-</header>
-
-<div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">Features:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
-        <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}</a></li>
-      </ul>
+<div class="content-default" main-directive>
+    
+    <h2>Bitcoin Wallets <span id="main-balance"><span class="fa fa-bitcoin"></span> {{balance}}</span></span></h2>
+            
+    <div class="row">
+        <div class="col-md-12">
+            
+            <table id="wallets-table" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Address</th>
+                        <th class="center">QR code</th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="wallet in wallets" data-address="{{wallet.address}}">
+                    <td>{{wallet.address}}</td>
+                    <td class="center"><button class="btn btn-default qrcode"><span class="fa fa-qrcode"></span></button></td>
+                </tr>
+                
+            </table>
+            
+            
+            <button class="btn btn-default add">
+                <span class="fa fa-plus"></span><span class="main-label">Add new wallet</span>
+            </button>
+                                    
+        </div>
     </div>
-  </div>
+    
+    <h2>Send Bitcoins</h2>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="main-input input-group">
+                <span class="input-group-addon"><span class="fa fa-user"></span></span>
+                <input type="text" class="form-control" placeholder="Bicoin Address" ng-model="send.address">
+            </div>
+            <div ng-show="invalidAddress" class="alert alert-danger main-error">Invalid Address</div>
+            <div class="main-input input-group">
+                <span class="input-group-addon"><span class="fa fa-bitcoin"></span></span>
+                <input type="text" class="form-control" placeholder="Amount" ng-model="send.amount">
+            </div>
+            <div ng-show="invalidAmount" class="alert alert-danger main-error">Invalid Amount</div>
+            <button class=" main-input btn btn-default send">
+                <span class="fa fa-arrow-right"></span><span class="main-label">Send</span>
+            </button>
+            
+            <div ng-show="successfulTransaction" class="alert alert-success main-error">Successful Transaction!</div>
+            
+        </div>
+    </div>
+    
 </div>
+
 
 <footer></footer>
