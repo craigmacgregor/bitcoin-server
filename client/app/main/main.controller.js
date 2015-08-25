@@ -24,20 +24,6 @@ angular.module('bitcoinServerApp')
         
     };
     
-    $scope.remove = function(id){
-        console.log('remove');
-        var request = $http({
-            method: "delete",
-            url: "/api/wallets/"+id
-        });
-        
-        request.success(function(data){
-            console.log(data);
-            $scope.getWalletList();
-        });  
-        
-    };
-    
     $scope.getWalletList = function(){
         console.log('getWalletList');
         var req = {
