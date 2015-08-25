@@ -11,15 +11,11 @@
                 <thead>
                     <tr>
                         <th>Address</th>
-                        <th class="center">Balance</th>
-                        <th class="center">Num Transactions</th>
                         <th class="center">QR code</th>
                     </tr>
                 </thead>
                 <tr ng-repeat="wallet in wallets" data-address="{{wallet.address}}">
                     <td>{{wallet.address}}</td>
-                    <td class="center">{{wallet.amount}}</td>
-                    <td class="center">{{wallet.txids.length}}</td>
                     <td class="center"><button class="btn btn-default qrcode"><span class="fa fa-qrcode"></span></button></td>
                 </tr>
                 
