@@ -78,14 +78,6 @@ exports.index = function(req, res) {
   });
 };
 
-// Gets a single Wallet from the DB
-exports.show = function(req, res) {
-  Wallet.findByIdAsync(req.params.id)
-    .then(handleEntityNotFound(res))
-    .then(responseWithResult(res))
-    .catch(handleError(res));
-};
-
 // Creates a new Wallet in the DB
 exports.create = function(req, res) {
   res.setHeader('Content-Type', 'application/json');
@@ -97,22 +89,13 @@ exports.create = function(req, res) {
   });
 };
 
-// Updates an existing Wallet in the DB
-exports.update = function(req, res) {
-  if (req.body._id) {
-    delete req.body._id;
-  }
-  Wallet.findByIdAsync(req.params.id)
-    .then(handleEntityNotFound(res))
-    .then(saveUpdates(req.body))
-    .then(responseWithResult(res))
-    .catch(handleError(res));
-};
-
-// Deletes a Wallet from the DB
-exports.destroy = function(req, res) {
-  Wallet.findByIdAsync(req.params.id)
-    .then(handleEntityNotFound(res))
-    .then(removeEntity(res))
-    .catch(handleError(res));
+// Gets the total balance of all wallets
+exports.balance = function(req, res) {
+  res.setHeader('Content-Type', 'application/json');
+  client.cmd('getbalance', function(err, data) {
+    if (err) {
+      res.status(500).send(err);
+    }
+    res.send(JSON.stringify(data));
+  });
 };
