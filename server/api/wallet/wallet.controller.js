@@ -94,7 +94,7 @@ exports.balance = function(req, res) {
 exports.create = function(req, res) {
   res.setHeader('Content-Type', 'application/json');
   client.cmd('getnewaddress',function(err, data) {
-  if (err) {
+  if (err)  {
     res.status(500).send(err);
   }
     res.send(JSON.stringify(data));

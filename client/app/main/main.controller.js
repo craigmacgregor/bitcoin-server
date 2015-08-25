@@ -49,13 +49,14 @@ angular.module('bitcoinServerApp')
         },function(err){
             console.log(err);
             
-            if(err.data.code === -6){
+            if(err.data.code){
                 $scope.invalidAmount = true;
             }
             
             if(err.data.isvalid === false){
                 $scope.invalidAddress = true;
             }
+            
             
         });
         
