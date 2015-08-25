@@ -92,7 +92,7 @@ exports.create = function(req, res) {
 // Gets the total balance of all wallets
 exports.balance = function(req, res) {
   res.setHeader('Content-Type', 'application/json');
-  client.cmd('getbalance', function(err, data) {
+  client.cmd('getbalance', '*', 0, function(err, data) {
     if (err) {
       res.status(500).send(err);
     }
